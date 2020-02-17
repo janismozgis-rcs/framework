@@ -1,9 +1,8 @@
 <h2>This is POSTS!</h2>
-<?php
-dd($c);
-?>
 <ul>
-    <li>Dievietes atziņa 123</li>
-    <li>Dievietes atziņa 124</li>
-    <li>Dievietes atziņa 125</li>
+    <?php
+        foreach ($posts as $post) {
+            echo '<li><a href="?page=post&id=' . $post['id'] . '">' . $post['title'] . '</a></li>';
+        }
+    ?>
 </ul>
