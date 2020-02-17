@@ -4,6 +4,8 @@ class PostsController
 {
     public function index(): string
     {
-        return BaseView::generate('Posts', 'index');
+        $c = PostsRepository::getPosts();
+        
+        return BaseView::generate('Posts', 'index', $c);
     }
 }
