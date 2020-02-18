@@ -19,6 +19,7 @@ require_once '../app/Controllers/ErrorsController.php';
 require_once '../app/Repositories/PostsRepository.php';
 require_once '../app/Models/Post.php';
 
+
 $page = $_GET['page'] ?? 'home';
 
 switch ($page) {
@@ -27,6 +28,9 @@ switch ($page) {
         break;
     case 'posts':
         echo (new PostsController)->index();
+        break;
+    case 'post':
+        echo (new PostsController)->viewPost();
         break;
     case 'about-us':
         echo (new InfoController)->aboutUs();
