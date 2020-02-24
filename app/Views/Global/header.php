@@ -27,6 +27,9 @@
             <a class="nav-link" href="?page=posts">Posts</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="?page=articles">Articles</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="?page=login">Log in</a>
         </li>
         <li class="nav-item">
