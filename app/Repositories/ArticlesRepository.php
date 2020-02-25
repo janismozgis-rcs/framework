@@ -4,16 +4,12 @@ class ArticlesRepository
 {
     public static function getArticles(): array
     {
-        $data = file_get_contents(__DIR__ . '/../data/articles.json');
-        $articles = json_decode($data, true);
+        
+        $query = DB::$connection->query("SELECT * FROM articles");
         $output = [];
 
-        foreach ($articles as $article) {
-            $articleObj = new Article();
-            $articleObj->id = $article['id'];
-            $articleObj->title = $article['title'];
-            $articleObj->text = $article['text'];
-            $output[] = $articleObj;
+        while ($article = $query->fetchObject('Article')) {
+            $output[] = $article;
         }
 
         return $output;
@@ -21,13 +17,15 @@ class ArticlesRepository
 
     public static function getArticle(int $id): ?Article
     {
-        $articles = self::getArticles();
-        foreach ($articles as $article) {
-            if ($article->id == $id) {
-                return $article;
-            }
+        $query = DB::$connection->prepare("SELECT * FROM articles WHERE id = :id");
+        $query->execute(['id' => $id]);
+        
+        $article = $query->fetchObject('Article');
+
+        if (!$article) {
+            return null;
         }
 
-        return null;
+        return $article;
     }
 }

@@ -4,16 +4,11 @@ class PostsRepository
 {
     public static function getPosts(): array
     {
-        $dataJson = file_get_contents(__DIR__ . '/../data/posts.json');
-        $posts = json_decode($dataJson, true);
+        $query = DB::$connection->query("SELECT * FROM posts");
 
         $output = [];
-        foreach ($posts as $post) {
-            $postObj = new Post();
-            $postObj->id = $post['id'];
-            $postObj->title = $post['title'];
-            $postObj->text = $post['text'];
-            $output[] = $postObj;
+        while ($post = $query->fetchObject('Post')) {
+            $output[] = $post;
         }
         
         return $output;
@@ -21,13 +16,14 @@ class PostsRepository
 
     public static function getPost(int $id): ?Post
     {
-        $posts = self::getPosts();
-        foreach ($posts as $post) {
-            if ($post->id == $id) {
-                return $post;
-            }
+        $query = DB::$connection->prepare("SELECT * FROM posts WHERE id = :id");
+        $query->execute(['id' => $id]);
+        $post = $query->fetchObject('Post');
+
+        if (!$post) {
+            return null;
         }
 
-        return null;
+        return $post;
     }
 }
