@@ -3,8 +3,8 @@
 class User
 {
     public $email;
-    public $firstName;
-    public $lastName;
+    public $first_name;
+    public $last_name;
 
     public static function validate(array $data): array
     {

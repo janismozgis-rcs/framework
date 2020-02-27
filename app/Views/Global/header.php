@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    
+
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="?">Home</a>
@@ -29,10 +29,16 @@
         <li class="nav-item">
             <a class="nav-link" href="?page=articles">Articles</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?page=login">Log in</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?page=registration">Registration</a>
-        </li>    
+        <?php if (!$_SESSION['loggedIn']) { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="?page=login">Log in</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?page=registration">Registration</a>
+            </li>
+        <?php } else { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="?page=log-out">Log out</a>
+            </li>
+        <?php } ?>
     </ul>
