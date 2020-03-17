@@ -33,4 +33,10 @@ class UsersController
 
         return BaseView::generate('Users', 'register', ['errors' => $errors]);
     }
+    
+    public function logOut(): void
+    {
+        session_destroy();
+        header('Location: ?page=login');
+    }
 }

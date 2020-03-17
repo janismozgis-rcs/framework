@@ -29,16 +29,21 @@
         <li class="nav-item">
             <a class="nav-link" href="?page=articles">Articles</a>
         </li>
-        <?php if (!$_SESSION['loggedIn']) { ?>
+
+
+        <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="?page=log-out">Log out</a>
+            </li>
+        <?php } else { ?>
             <li class="nav-item">
                 <a class="nav-link" href="?page=login">Log in</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="?page=registration">Registration</a>
             </li>
-        <?php } else { ?>
-            <li class="nav-item">
-                <a class="nav-link" href="?page=log-out">Log out</a>
-            </li>
+
         <?php } ?>
+
+
     </ul>
