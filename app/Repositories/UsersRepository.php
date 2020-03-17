@@ -42,4 +42,16 @@ class UsersRepository
 
         return $user;
     }
+
+    public static function getUsers(): array
+    {
+        $query = DB::$connection->query("SELECT * FROM users");
+
+        $output = [];
+        while ($post = $query->fetchObject('User')) {
+            $output[] = $post;
+        }
+
+        return $output;
+    }
 }

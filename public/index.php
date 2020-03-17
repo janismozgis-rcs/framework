@@ -47,6 +47,9 @@ switch ($page) {
     case 'log-out':
         echo (new UsersController)->logOut();
         break;
+    case 'users':
+        echo (new UsersController)->index();
+        break;
     case 'super-secret':
         echo (new SuperSecretController)->index();
         break;
